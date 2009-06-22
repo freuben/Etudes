@@ -1,0 +1,462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title></title>
+<meta name="Generator" content="Cocoa HTML Writer">
+<meta name="CocoaVersion" content="949">
+<style type="text/css">
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
+p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
+p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #5a4227}
+p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #1a32a0}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #5f4125}
+p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #5f4125; min-height: 12.0px}
+p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #606060}
+p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #6e3d20}
+p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #853519}
+p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #663f23}
+p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #0b2aab}
+p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #0b2aab}
+p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #783a1d}
+p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #a8220e}
+p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bf0000}
+p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000}
+p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #0013bb}
+p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #a8220e; min-height: 12.0px}
+span.s1 {color: #1a32a0}
+span.s2 {color: #000000}
+span.s3 {font: 10.0px Monaco}
+span.s4 {color: #606332}
+span.s5 {color: #5a4227}
+span.s6 {color: #5a6628}
+span.s7 {color: #102da7}
+span.s8 {color: #5d652c}
+span.s9 {color: #663f23}
+span.s10 {color: #0b2aab}
+span.s11 {color: #0021b3}
+span.s12 {color: #007300}
+span.s13 {color: #0013bb}
+span.s14 {color: #316f11}
+span.Apple-tab-span {white-space:pre}
+</style>
+</head>
+<body>
+<p class="p1">s.boot;</p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p1">var func;</p>
+<p class="p3">//node proxies</p>
+<p class="p1">e = <span class="s1">NodeProxy</span>.audio(s, 1);</p>
+<p class="p1">e.play;</p>
+<p class="p1">d = <span class="s1">NodeProxy</span>.audio(s, 1);</p>
+<p class="p1">d.play;</p>
+<p class="p2"><br></p>
+<p class="p3">//recorder envelopes</p>
+<p class="p4"><span class="s2">f = </span>RecorderEnv<span class="s2">.new;</span></p>
+<p class="p1"><span class="s3">f.</span>envelopes;</p>
+<p class="p1">f.newenvelope;</p>
+<p class="p1">~recenv = f.envelope;</p>
+<p class="p2"><br></p>
+<p class="p3">//a SinOsc</p>
+<p class="p1">func = {<span class="s1">arg</span> gates = 1; <span class="s1">SinOsc</span>.ar(400,0,0.2) * <span class="s1">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );};</p>
+<p class="p2"><br></p>
+<p class="p3">//start Proxies</p>
+<p class="p1">e.put(0, func, 0, [<span class="s4">\gates</span>, 0]); <span class="s5">//gates is cero here...</span></p>
+<p class="p1">d.put(0, func, 0, [<span class="s4">\gates</span>, 1]);<span class="Apple-converted-space"> </span></p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p3">//Routine to hear the different articulations thrgough typology of evelopes</p>
+<p class="p1">(</p>
+<p class="p1">r = <span class="s1">Routine</span>({<span class="s1">inf</span>.do({</p>
+<p class="p2"><br></p>
+<p class="p3"><span class="s2">f.newenvelope; </span>//get a new envelope</p>
+<p class="p3"><span class="s2">~recenv = f.envelope; </span>//variable to get the envelope in the synth</p>
+<p class="p2"><br></p>
+<p class="p1">d.set(<span class="s4">\gates</span>, 0);</p>
+<p class="p1">e.set(<span class="s4">\gates</span>, 1);</p>
+<p class="p1">e.source = {<span class="s1">arg</span> gates = 1; <span class="s1">SinOsc</span>.ar(rrand(200,600.0),0,0.2) * <span class="s1">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );};</p>
+<p class="p2"><br></p>
+<p class="p1">1.yield;</p>
+<p class="p2"><br></p>
+<p class="p1">f.newenvelope;</p>
+<p class="p1">~recenv = f.envelope;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">e.set(<span class="s4">\gates</span>, 0);</p>
+<p class="p1">d.set(<span class="s4">\gates</span>, 1);</p>
+<p class="p1">d.source = {<span class="s1">arg</span> gates = 1; <span class="s1">SinOsc</span>.ar(rrand(200,600.0),0,0.2) * <span class="s1">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );};</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">1.yield;</p>
+<p class="p1">})}).play</p>
+<p class="p1">)<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">r.stop</p>
+<p class="p2"><br></p>
+<p class="p3"><span class="s2">f.bang = 0; </span>//change the bang for types of realise (end of frase or not)</p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p1">r = <span class="s1">Routine</span>({<span class="s1">inf</span>.do({</p>
+<p class="p2"><br></p>
+<p class="p3"><span class="s2">f.newenvelope; </span>//get a new envelope</p>
+<p class="p3"><span class="s2">~recenv = f.envelope; </span>//variable to get the envelope in the synth</p>
+<p class="p2"><br></p>
+<p class="p1">d.set(<span class="s4">\gates</span>, 0);</p>
+<p class="p1">1.yield;</p>
+<p class="p1">e.set(<span class="s4">\gates</span>, 1);</p>
+<p class="p1">e.source = {<span class="s1">arg</span> gates = 1; <span class="s1">SinOsc</span>.ar(rrand(200, 600.0),0,0.2) * <span class="s1">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );};</p>
+<p class="p2"><br></p>
+<p class="p1">1.yield;</p>
+<p class="p2"><br></p>
+<p class="p1">f.newenvelope;</p>
+<p class="p1">~recenv = f.envelope;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">e.set(<span class="s4">\gates</span>, 0);</p>
+<p class="p1">1.yield;</p>
+<p class="p1">d.set(<span class="s4">\gates</span>, 1);</p>
+<p class="p1">d.source = {<span class="s1">arg</span> gates = 1; <span class="s1">SinOsc</span>.ar(rrand(200, 600.0),0,0.2) * <span class="s1">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );};</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">1.yield;</p>
+<p class="p1">})}).play</p>
+<p class="p1">)<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">r.stop;</p>
+<p class="p2"><br></p>
+<p class="p5">/////////////////////////////////////////////////////////////////////////////</p>
+<p class="p6"><br></p>
+<p class="p1">(</p>
+<p class="p1">s.boot.doWhenBooted{</p>
+<p class="p7"><span class="s2">s.sendBundle(0.1,[</span><span class="s6">\b_alloc</span><span class="s2">, 27, 1024, 1], [</span><span class="s6">\b_allocRead</span><span class="s2">, 3, </span>"/Users/freuben/Music/E-tudes/PianoNoise/Rehearsal/ruido2.aif"<span class="s2">],<span class="Apple-converted-space">  </span>[</span><span class="s6">\b_allocRead</span><span class="s2">, 29, </span>"/Users/freuben/Music/E-tudes/Analized Stuff/Recorder/voice2.aiff"<span class="s2">], [</span><span class="s6">\b_allocRead</span><span class="s2">, 30, </span>"/Users/freuben/Music/E-tudes/Analized Stuff/Recorder/1 partial2_transpose.aiff"<span class="s2">]);</span></p>
+<p class="p1">}</p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p8">//synth to read<span class="Apple-converted-space">  </span>amplitude and pitch from buffer</p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p1"><span class="s7">var</span> count = 0;</p>
+<p class="p1">~thresh = 0.001;</p>
+<p class="p1">~osc =<span class="Apple-converted-space">  </span><span class="s7">OSCresponder</span>(s.addr,<span class="s8">'/tr'</span>,{ <span class="s7">arg</span> time,responder,msg;</p>
+<p class="p1"><span class="Apple-tab-span">	</span>if(msg[2] == 0, {</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(msg[3] &lt; (0.007*~thresh),<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{count = count + 1;}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>);</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(msg[3] &gt; (0.007*~thresh),<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{count = 0;};</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>);</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(count == 1<span class="Apple-tab-span">	</span>,</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{msg[3].postln;</p>
+<p class="p9"><span class="s2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>//f.bang = 0;</p>
+<p class="p9">//<span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>e.set(\gates, 0);<span class="Apple-converted-space"> </span></p>
+<p class="p9">//<span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>d.set(\gates, 0);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s8">'shush'</span>.postln}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>);</p>
+<p class="p10"><span class="s2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}); </span>//this get's amplitude</p>
+<p class="p1"><span class="Apple-tab-span">	</span>if(msg[2] == 1, {~freqgagok = msg[3];}); <span class="s9">//this get's frequency</span></p>
+<p class="p1">}).add;</p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p10">//routine to get the changes in the pitch tracker and trigger envelopes when change in freq...</p>
+<p class="p1">(</p>
+<p class="p1">~interval = 1;</p>
+<p class="p1">~pitch = 1;</p>
+<p class="p1">r = <span class="s10">Routine</span>({<span class="s10">var</span> first, second, step, jumpstep, timer, time1, time2, difTime;</p>
+<p class="p1">step = 0;</p>
+<p class="p1">jumpstep = 0;</p>
+<p class="p1">timer = 0.0;</p>
+<p class="p1">time2 = 0.0;</p>
+<p class="p1">difTime = 0.0;</p>
+<p class="p1">second = ~freqgagok;</p>
+<p class="p1"><span class="s10">inf</span>.do({</p>
+<p class="p2"><br></p>
+<p class="p1">first = ~freqgagok;</p>
+<p class="p1">if((first.cpsmidi - second.cpsmidi).abs &gt; ~interval,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>{if(step &lt; 1,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{step = step + 1;},</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{step = 0;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>jumpstep = jumpstep + 1;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s6">'jump'</span>.postln;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(jumpstep.odd,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{time1 = timer;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>difTime = difTime + ((time1 - time2)*~pitch);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>difTime.postln;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>f.newenvelope;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>~recenv = f.envelope;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>d.set(<span class="s6">\gates</span>, 0);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>e.set(<span class="s6">\gates</span>, 1);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>e.source = {<span class="s10">arg</span> gates = 1; var gagok, freq, hasFreq, ampGagok;</p>
+<p class="p1"><span class="s10">gagok = PlayBuf</span>.ar(1, 30, ~pitch, 1.0, difTime*44100, 1)/2 * <span class="s10">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );</p>
+<p class="p1"># freq, hasFreq = <span class="s10">Pitch</span>.kr(gagok, 192.3, ampThreshold: 0.0, median: 7);</p>
+<p class="p1">ampGagok = <span class="s10">Amplitude</span>.kr(gagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateAmp), 0, ampGagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateFreq),1,freq);</p>
+<p class="p1">gagok;</p>
+<p class="p1">};</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>},</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{time2 = timer;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>difTime = difTime + ((time2 - time1)*~pitch);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>difTime.postln;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>f.newenvelope;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>~recenv = f.envelope;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>d.set(<span class="s6">\gates</span>, 1);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>e.set(<span class="s6">\gates</span>, 0);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>d.source = {<span class="s10">arg</span> gates = 1; var gagok, freq, hasFreq, ampGagok;</p>
+<p class="p1"><span class="s10">gagok = PlayBuf</span>.ar(1, 30, ~pitch, 1.0, difTime*44100, 1)/2 * <span class="s10">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );</p>
+<p class="p1"># freq, hasFreq = <span class="s10">Pitch</span>.kr(gagok, 192.3, ampThreshold: 0.0, median: 7);</p>
+<p class="p1">ampGagok = <span class="s10">Amplitude</span>.kr(gagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateAmp), 0, ampGagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateFreq),1,freq);</p>
+<p class="p1">gagok;</p>
+<p class="p1">};</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>);</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>)};</p>
+<p class="p1">);</p>
+<p class="p2"><br></p>
+<p class="p1">timer = timer + 0.1;<span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1">0.1.yield;</p>
+<p class="p2"><br></p>
+<p class="p1">second = ~freqgagok;</p>
+<p class="p1">if((first.cpsmidi - second.cpsmidi).abs &gt; ~interval,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>{if(step &lt; 1,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{step = step + 1;},</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{step = 0;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>jumpstep = jumpstep + 1;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s6">'jump'</span>.postln;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(jumpstep.odd,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{time1 = timer;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>difTime = difTime + ((time1 - time2)*~pitch);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>difTime.postln;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>f.newenvelope;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>~recenv = f.envelope;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>d.set(<span class="s6">\gates</span>, 0);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>e.set(<span class="s6">\gates</span>, 1);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>e.source = {<span class="s10">arg</span> gates = 1; var gagok, freq, hasFreq, ampGagok;</p>
+<p class="p1"><span class="s10">gagok = PlayBuf</span>.ar(1, 30, ~pitch, 1.0, difTime*44100, 1)/2 * <span class="s10">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );</p>
+<p class="p1"># freq, hasFreq = <span class="s10">Pitch</span>.kr(gagok, 192.3, ampThreshold: 0.0, median: 7);</p>
+<p class="p1">ampGagok = <span class="s10">Amplitude</span>.kr(gagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateAmp), 0, ampGagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateFreq),1,freq);</p>
+<p class="p1">gagok;</p>
+<p class="p1">};<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>},</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{time2 = timer;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>difTime = difTime + ((time2 - time1)*~pitch);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>difTime.postln; <span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>f.newenvelope;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>~recenv = f.envelope;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>d.set(<span class="s6">\gates</span>, 1);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>e.set(<span class="s6">\gates</span>, 0);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>d.source = {<span class="s10">arg</span> gates = 1; var gagok, freq, hasFreq, ampGagok;</p>
+<p class="p1"><span class="s10">gagok = PlayBuf</span>.ar(1, 30, ~pitch, 1.0, difTime*44100, 1)/2 * <span class="s10">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );</p>
+<p class="p1"># freq, hasFreq = <span class="s10">Pitch</span>.kr(gagok, 192.3, ampThreshold: 0.0, median: 7);</p>
+<p class="p1">ampGagok = <span class="s10">Amplitude</span>.kr(gagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateAmp), 0, ampGagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateFreq),1,freq);</p>
+<p class="p1">gagok;</p>
+<p class="p1">};</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>);</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>)};</p>
+<p class="p1">);</p>
+<p class="p2"><br></p>
+<p class="p1">timer = timer + 0.1;</p>
+<p class="p1">0.1.yield;</p>
+<p class="p1">})</p>
+<p class="p1">})</p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p8">//node proxies</p>
+<p class="p1">d = <span class="s10">NodeProxy</span>.audio(s, 1);</p>
+<p class="p1">d.play;</p>
+<p class="p1">e = <span class="s10">NodeProxy</span>.audio(s, 1);</p>
+<p class="p1">e.play;</p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p10">//lazy Routine</p>
+<p class="p1">(</p>
+<p class="p11">~routine2 = Routine<span class="s2">({</span>var<span class="s2"> func;</span></p>
+<p class="p1">1.do({</p>
+<p class="p1">~rateFreq = 150;</p>
+<p class="p1">~rateAmp = 10;</p>
+<p class="p1">r.reset;</p>
+<p class="p1">d.source = nil;</p>
+<p class="p1">e.source = nil;</p>
+<p class="p1">d.play;</p>
+<p class="p1">e.play;</p>
+<p class="p8">//recorder envelopes</p>
+<p class="p12"><span class="s2">f = </span>RecorderEnv<span class="s2">.new;</span></p>
+<p class="p1"><span class="s3">f.</span>envelopes;</p>
+<p class="p1">0.1.yield;</p>
+<p class="p2"><br></p>
+<p class="p8">//get envelopes, start getting pitch tracker data</p>
+<p class="p1">f.newenvelope;</p>
+<p class="p1">~recenv = f.envelope;</p>
+<p class="p2"><br></p>
+<p class="p1">f.newenvelope;</p>
+<p class="p1">~recenv = f.envelope;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">0.02.yield;</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1">d.set(<span class="s6">\gates</span>, 1);<span class="Apple-converted-space"> </span></p>
+<p class="p1">e.set(<span class="s6">\gates</span>, 0);</p>
+<p class="p1">d.source = {<span class="s10">arg</span> gates = 1; var gagok, freq, hasFreq, ampGagok;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="s10">gagok = PlayBuf</span>.ar(1, 30, ~pitch, 1.0, 0.0, 1)/2 * <span class="s10">EnvGen</span>.kr(~recenv, gates, doneAction: 2 );</p>
+<p class="p1"># freq, hasFreq = <span class="s10">Pitch</span>.kr(gagok, 192.3, ampThreshold: 0.0, median: 7);</p>
+<p class="p1">ampGagok = <span class="s10">Amplitude</span>.kr(gagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateAmp), 0, ampGagok);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="s10">SendTrig</span>.kr(<span class="s10">Impulse</span>.kr(~rateFreq),1,freq);</p>
+<p class="p1">gagok;</p>
+<p class="p1">};</p>
+<p class="p2"><br></p>
+<p class="p13"><span class="s2">r.play; </span>//start routine</p>
+<p class="p1">})</p>
+<p class="p1">})</p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">~routine2.play</p>
+<p class="p2"><br></p>
+<p class="p1">~pitch = 0.9</p>
+<p class="p1">~interval = 1;</p>
+<p class="p2"><br></p>
+<p class="p1">r.stop</p>
+<p class="p1">r.reset;</p>
+<p class="p1">r.play;</p>
+<p class="p2"><br></p>
+<p class="p9">//////////</p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p1">~rout = <span class="s11">Routine</span>({ <span class="s11">inf</span>.do({</p>
+<p class="p1">~pitch = [0.8, 0.9, 1, 1.125].choose.postln;</p>
+<p class="p1">~pitch.postln;</p>
+<p class="p1">10.0.yield;</p>
+<p class="p1">})</p>
+<p class="p1">}).play</p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p1">~rout.stop;</p>
+<p class="p2"><br></p>
+<p class="p9">////free nodeproxies</p>
+<p class="p1">e.clear; d.clear;</p>
+<p class="p2"><br></p>
+<p class="p14">////////////////////////////////////////////</p>
+<p class="p2"><br></p>
+<p class="p15">//new approachfor envelope manegment</p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p16">s.boot.doWhenBooted{</p>
+<p class="p7"><span class="s2">s.sendBundle(0.1,[</span><span class="s12">\b_alloc</span><span class="s2">, 27, 1024, 1], [</span><span class="s12">\b_allocRead</span><span class="s2">, 3, </span>"/Users/freuben/Music/E-tudes/PianoNoise/Rehearsal/ruido2.aif"<span class="s2">],<span class="Apple-converted-space">  </span>[</span><span class="s12">\b_allocRead</span><span class="s2">, 28, </span>"/Users/freuben/Music/E-tudes/Analized Stuff/Recorder/voice_inF.aiff"<span class="s2">], [</span><span class="s12">\b_allocRead</span><span class="s2">, 30, </span>"/Users/freuben/Music/E-tudes/Analized Stuff/Recorder/1 partial2_transpose.aiff"<span class="s2">]);</span></p>
+<p class="p16">}</p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p1">a = <span class="s13">NodeProxy</span>.audio(s, 2);</p>
+<p class="p1">a.play;</p>
+<p class="p1">b = <span class="s13">NodeProxy</span>.audio(s, 2);</p>
+<p class="p1">b.play;</p>
+<p class="p1">c = <span class="s13">NodeProxy</span>.control(s, 2);</p>
+<p class="p1">d = <span class="s13">NodeProxy</span>.control(s, 2);</p>
+<p class="p1">a.map(<span class="s14">\eg</span>, c);<span class="Apple-converted-space"> </span></p>
+<p class="p1">b.map(\eg, d);</p>
+<p class="p2"><br></p>
+<p class="p17"><span class="s2">f = </span>RecorderEnv<span class="s2">.new;</span></p>
+<p class="p1"><span class="s3">f.</span>envelopes;</p>
+<p class="p1">f.newenvelope;</p>
+<p class="p1">)</p>
+<p class="p1">~array = f.atkarray</p>
+<p class="p1">f.synthy;</p>
+<p class="p2"><br></p>
+<p class="p1">w = <span class="s13">Env</span>.new(~array , [0] ++ <span class="s13">Array</span>.fill((~array.size-2), 0.025), -3)</p>
+<p class="p1">w.plot</p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p1">c.env(w);</p>
+<p class="p1">a.source = f.recfunc;</p>
+<p class="p1">)</p>
+<p class="p2"><br></p>
+<p class="p1">b.source = f.recfunc;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">(</p>
+<p class="p1">r = <span class="s13">Routine</span>({<span class="s13">inf</span>.do({</p>
+<p class="p14">//attack</p>
+<p class="p18"><br></p>
+<p class="p1">f.newenvelope;</p>
+<p class="p2"><br></p>
+<p class="p1">~array2 = f.atkarray*0.2;</p>
+<p class="p2"><br></p>
+<p class="p1">v = <span class="s13">Env</span>.new(~array2 , [0] ++ <span class="s13">Array</span>.fill((~array.size-2), 0.025), -4);</p>
+<p class="p2"><br></p>
+<p class="p1">d.env(v);</p>
+<p class="p2"><br></p>
+<p class="p14">//relese;</p>
+<p class="p2"><br></p>
+<p class="p1">~array = f.relarray*0.2;</p>
+<p class="p2"><br></p>
+<p class="p1">w = <span class="s13">Env</span>.new(~array , [0] ++ <span class="s13">Array</span>.fill((~array.size-2), 0.025), -3);</p>
+<p class="p2"><br></p>
+<p class="p1">c.env(w);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="s2">a.set(</span><span class="s12">\freq</span>, rrand(60, 72).midicps<span class="s2">);</span></p>
+<p class="p1">[1.0,2.0, 1.5].choose.yield;</p>
+<p class="p2"><br></p>
+<p class="p15">//attack</p>
+<p class="p1">f.newenvelope;</p>
+<p class="p2"><br></p>
+<p class="p1">~array = f.atkarray*0.2;</p>
+<p class="p2"><br></p>
+<p class="p1">w = <span class="s13">Env</span>.new(~array , [0] ++ <span class="s13">Array</span>.fill((~array.size-2), 0.025), -3);</p>
+<p class="p2"><br></p>
+<p class="p1">c.env(w);</p>
+<p class="p18"><br></p>
+<p class="p14">//relese</p>
+<p class="p2"><br></p>
+<p class="p1">~array2 = f.relarray*0.2;</p>
+<p class="p2"><br></p>
+<p class="p1">v = <span class="s13">Env</span>.new(~array2 , [0] ++ <span class="s13">Array</span>.fill((~array.size-2), 0.025), -4);</p>
+<p class="p2"><br></p>
+<p class="p1">d.env(v);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="s2">b.set(</span><span class="s12">\freq</span><span class="s2">, </span>rrand(60, 72).midicps<span class="s2">);</span></p>
+<p class="p2"><br></p>
+<p class="p1">[1.0,2.0, 1.5].choose.yield;</p>
+<p class="p1">})</p>
+<p class="p1">})</p>
+<p class="p1">)</p>
+<p class="p1">r.play</p>
+<p class="p1">r.stop;</p>
+<p class="p2"><br></p>
+<p class="p1">a.set(\amp, 0.1)</p>
+<p class="p1">b.set(\amp, 0.1)</p>
+<p class="p2"><br></p>
+<p class="p1">a.clear; c.clear; b.clear; d.clear;</p>
+</body>
+</html>

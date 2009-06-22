@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title></title>
+<meta name="Generator" content="Cocoa HTML Writer">
+<meta name="CocoaVersion" content="949.43">
+<style type="text/css">
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bf0000}
+p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #0013bb; min-height: 12.0px}
+p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
+p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #a8220e}
+p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #0013bb}
+span.s1 {color: #0013bb}
+span.s2 {color: #000000}
+span.s3 {color: #a8220e}
+span.s4 {color: #606060}
+span.s5 {color: #316f11}
+span.Apple-tab-span {white-space:pre}
+</style>
+</head>
+<body>
+<p class="p1">//output 0 (noise) and output 1 (etudes-interp) go to computer2 input 5 and 6. output 2 and 3 (etudes-interp) go to headphones</p>
+<p class="p2"><br></p>
+<p class="p3"><span class="s1">Server</span>.default = s = <span class="s1">Server</span>.internal.boot;</p>
+<p class="p4"><br></p>
+<p class="p5"><span class="s2">p = </span><span class="s1">PianoRuidoBuffer</span><span class="s2">(sourcePiano:3,interPiano:7); </span>//arg:buf1, buf2, buf3, source, interp, vol</p>
+<p class="p5"><span class="s2">p.buffers; </span>//buffers with piano etudes</p>
+<p class="p4"><br></p>
+<p class="p3">p.startsynth2; <span class="s3">//starts synths</span></p>
+<p class="p5"><span class="s2">p.ruidoBuffer(vol:1.0); </span>//starts noise with volume 1.0</p>
+<p class="p5"><span class="s2">p.network(</span><span class="s4">"169.254.173.117"</span><span class="s2">); </span>//starts network with computer 1 with the given ipAddress</p>
+<p class="p3">s.scope(4);</p>
+<p class="p4"><br></p>
+<p class="p5"><span class="s2">p.setPianosVol(5.0); </span>//change volume in pianos</p>
+<p class="p4"><br></p>
+<p class="p3">p.setVol(10.0); <span class="s3">//volume</span></p>
+<p class="p4"><br></p>
+<p class="p5"><span class="s2">p.source; </span>//get source time</p>
+<p class="p5"><span class="s2">p.interp; </span>//get interpolation time</p>
+<p class="p5"><span class="s2">p.volume; </span>//get current volume</p>
+<p class="p4"><br></p>
+<p class="p5"><span class="s2">s.freeAll </span>//free all nodes from server</p>
+<p class="p5"><span class="s2">p.freenet; </span>//free network</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p3">p.interp</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p5">//direct midiIn</p>
+<p class="p3">(</p>
+<p class="p6">MIDIIn<span class="s2">.control = {</span>|src, chan, num, val|</p>
+<p class="p4"><br></p>
+<p class="p3"><span class="s1">var</span> spec = <span class="s1">ControlSpec</span>(0.001, 10, <span class="s5">\exponential</span>);</p>
+<p class="p3"><span class="s1">var</span> spec2 = <span class="s1">ControlSpec</span>(0.0.ampdb, 10.ampdb, <span class="s5">\db</span>, units: <span class="s4">"dB"</span>);</p>
+<p class="p5">//msg.postln;</p>
+<p class="p3"><span class="Apple-tab-span">	</span>if(num == 87,<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{<span class="s5">'interp: '</span>.post;<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.x.set(<span class="s5">\interpolation</span>, spec.map(val/127.0).postln);<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.dirIn.set(<span class="s5">\interpolation</span>, spec.map(val/127.0).postln);<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.interp = spec.map(val/127.0)};</p>
+<p class="p3"><span class="Apple-tab-span">	</span>);</p>
+<p class="p3"><span class="Apple-tab-span">	</span>if(num == 88,<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{<span class="s5">'source: '</span>.post;<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.x.set(<span class="s5">\source</span>, spec.map(val/127.0).postln;);<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.dirIn.set(<span class="s5">\source</span>, spec.map(val/127.0).postln;);<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.source = spec.map(val/127.0)};</p>
+<p class="p3"><span class="Apple-tab-span">	</span>);<span class="Apple-tab-span">	</span></p>
+<p class="p4"><span class="Apple-tab-span">	</span></p>
+<p class="p3">}</p>
+<p class="p3">)</p>
+</body>
+</html>

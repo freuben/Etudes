@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title></title>
+<meta name="Generator" content="Cocoa HTML Writer">
+<meta name="CocoaVersion" content="949.43">
+<style type="text/css">
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bf0000}
+p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #203894; min-height: 12.0px}
+p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
+p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #a8220e}
+p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #804c3d}
+p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #82422f}
+p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #952e14}
+p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #001bb7}
+span.s1 {color: #203894}
+span.s2 {color: #000000}
+span.s3 {color: #0013bb}
+span.s4 {color: #606060}
+span.s5 {color: #804c3d}
+span.s6 {color: #001bb7}
+span.s7 {color: #436c19}
+span.Apple-tab-span {white-space:pre}
+</style>
+</head>
+<body>
+<p class="p1">//output 0 (noise) and output 1 (etudes-interp) go to computer2 input 5 and 6. output 2 and 3 (etudes-interp) go to headphones (stereo)</p>
+<p class="p2"><br></p>
+<p class="p3"><span class="s1">Server</span>.default = s = <span class="s1">Server</span>.internal.boot;</p>
+<p class="p4"><br></p>
+<p class="p5"><span class="s2">p = </span><span class="s3">PianoRuidoLive</span><span class="s2">(2,3,4,3,7); </span>//args: in1,in2,in3,source,inerp</p>
+<p class="p6"><span class="s2">p.startsynth; </span>//starts synths</p>
+<p class="p6"><span class="s2">p.ruidoLive(vol:1.0); </span>//starts noise with volume 1.0</p>
+<p class="p7"><span class="s2">p.network(</span><span class="s4">"169.254.157.224"</span><span class="s2">); </span>//starts network with computer 1 with the given ipAddress</p>
+<p class="p3">s.scope(1)</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p8"><span class="s2">p.wakePianos </span>//wakePianists</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p6"><span class="s2">p.setPianosVol(1.0); </span>//change volume in pianos</p>
+<p class="p4"><br></p>
+<p class="p3">p.setVol(1.0); <span class="s5">//volume</span></p>
+<p class="p4"><br></p>
+<p class="p6"><span class="s2">p.source; </span>//get source time</p>
+<p class="p6"><span class="s2">p.interp; </span>//get interpolation time</p>
+<p class="p6"><span class="s2">p.volume; </span>//get current volume</p>
+<p class="p4"><br></p>
+<p class="p6"><span class="s2">s.freeAll </span>//free all nodes from server</p>
+<p class="p6"><span class="s2">p.freenet; </span>//free network</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p8">//direct midiIn</p>
+<p class="p3">(</p>
+<p class="p9">MIDIIn<span class="s2">.control = {</span>|src, chan, num, val|</p>
+<p class="p4"><br></p>
+<p class="p3"><span class="s6">var</span> spec = <span class="s6">ControlSpec</span>(0.001, 10, <span class="s7">\exponential</span>);</p>
+<p class="p3"><span class="s6">var</span> spec2 = <span class="s6">ControlSpec</span>(0.0.ampdb, 10.ampdb, <span class="s7">\db</span>, units: <span class="s4">"dB"</span>);</p>
+<p class="p8">//msg.postln;</p>
+<p class="p3"><span class="Apple-tab-span">	</span>if(num == 87,<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{<span class="s7">'interp: '</span>.post;<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.x.set(<span class="s7">\interpolation</span>, spec.map(val/127.0).postln);<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.dirIn.set(<span class="s7">\interpolation</span>, spec.map(val/127.0).postln);<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.interp = spec.map(val/127.0)};</p>
+<p class="p3"><span class="Apple-tab-span">	</span>);</p>
+<p class="p3"><span class="Apple-tab-span">	</span>if(num == 88,<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{<span class="s7">'source: '</span>.post;<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.x.set(<span class="s7">\source</span>, spec.map(val/127.0).postln;);<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.dirIn.set(<span class="s7">\source</span>, spec.map(val/127.0).postln;);<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p.source = spec.map(val/127.0)};</p>
+<p class="p3"><span class="Apple-tab-span">	</span>);<span class="Apple-tab-span">	</span></p>
+<p class="p4"><span class="Apple-tab-span">	</span></p>
+<p class="p3">}</p>
+<p class="p3">)</p>
+</body>
+</html>

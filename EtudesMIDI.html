@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title></title>
+<meta name="Generator" content="Cocoa HTML Writer">
+<meta name="CocoaVersion" content="949.43">
+<style type="text/css">
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #5b5a66}
+p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; min-height: 19.0px}
+p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #46443a}
+p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #464437}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco}
+p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #606060}
+p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #474a58}
+p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #46443a; min-height: 19.0px}
+p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #46443a}
+p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Monaco}
+p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
+p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
+p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #46443a; min-height: 12.0px}
+p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Monaco; color: #46443a}
+p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px Monaco; min-height: 21.0px}
+p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #808080}
+span.s1 {color: #000000}
+span.s2 {font: 9.0px Monaco; color: #46443a}
+span.s3 {color: #001bb7}
+span.s4 {color: #606060}
+</style>
+</head>
+<body>
+<p class="p1">//Remember to speak as softly as possible</p>
+<p class="p2"><br></p>
+<p class="p3">//Analog Inputs: input1 =&gt; microphone (+53db), input2 =&gt; piano noise (+4db), input3 =&gt; etudes (+4db), input4 =&gt; midi piano (0db)</p>
+<p class="p4">//set stage piano volume at 4 points from min (including 1st)</p>
+<p class="p5">s.boot;</p>
+<p class="p2"><br></p>
+<p class="p5">(</p>
+<p class="p6"><span class="s1">b = </span>"169.254.8.152"; <span class="s2">//ipAddress</span></p>
+<p class="p7"><span class="s1">a = </span>EtudesMIDI<span class="s1">(b);</span></p>
+<p class="p5">c = 4;</p>
+<p class="p5">)</p>
+<p class="p8"><br></p>
+<p class="p9">//ETUDES1</p>
+<p class="p5">a.etudes1MIDI(c);</p>
+<p class="p3">//arguments are vol for: voc, l-band, g-rev,g-perc,voc2, h-band, pno,<span class="Apple-converted-space">  </span>o-fist, bow, o-chrd, o-mel, cel, antony, bombo</p>
+<p class="p10">a.etudes1MIDIStart(0.5, 1.8, 1.8, 3.0, 1.8, 1.1, 1.0, 2.1, 2.0, 2.1, 2.3, 3.1, 2.5, 1.5);</p>
+<p class="p10">a.etudes1MIDIStartRoutine;</p>
+<p class="p3">//if something goes wrong:</p>
+<p class="p11">a.etudes1.clearproxys;</p>
+<p class="p3">//now load synths with midi controller and then:</p>
+<p class="p11">a.etudes1begining;</p>
+<p class="p12"><br></p>
+<p class="p11">a.etudes1MIDIStartRoutine;</p>
+<p class="p3">//then move knob 3;</p>
+<p class="p12"><br></p>
+<p class="p11">a.etudes1begining;</p>
+<p class="p13"><br></p>
+<p class="p3">//then move knob 3;</p>
+<p class="p12"><br></p>
+<p class="p3">//rehearsal marks (first : load synths with midi controller)</p>
+<p class="p11">a.etudes1rehearsalA;</p>
+<p class="p11">a.etudes1rehearsalB;</p>
+<p class="p11">a.etudes1rehearsalC;</p>
+<p class="p11">a.etudes1rehearsalD;</p>
+<p class="p11">a.etudes1rehearsalF;</p>
+<p class="p11">a.etudes1rehearsalH;</p>
+<p class="p12"><br></p>
+<p class="p3">//to finish either press bottom in controller or:</p>
+<p class="p11">a.etudes1finish;</p>
+<p class="p12"><br></p>
+<p class="p12"><br></p>
+<p class="p14">//ETUDES2</p>
+<p class="p10">a.etudes2MIDI(c);</p>
+<p class="p3">//arguments are vol for: bow,string,perc,piano, gagok,flute,reed,adjStr, adjPno<span class="Apple-converted-space"> </span></p>
+<p class="p10">a.etudes2MIDIStart(0.9,0.9,3.0,0.6, 1.0, 1.1,0.8, 0.6, 0.5);</p>
+<p class="p10">a.etudes2MIDIStartRoutine;</p>
+<p class="p3">//if something goes wrong:</p>
+<p class="p11">a.etudes2clearproxys;</p>
+<p class="p3">//load synths with midi controller and then</p>
+<p class="p11">a.etudes2begining;</p>
+<p class="p12"><br></p>
+<p class="p12"><br></p>
+<p class="p3">//rehearsal marks (first : load synths with midi controller)</p>
+<p class="p11">a.etudes2rehearsalA;</p>
+<p class="p11">a.etudes2rehearsalB;</p>
+<p class="p11">a.etudes2rehearsalC;</p>
+<p class="p11">a.etudes2rehearsalD;</p>
+<p class="p3"><span class="s1">a.etudes2rehearsalE; </span>//broken if used before rehearsing gagok</p>
+<p class="p11">a.etudes2rehearsalF;<span class="Apple-converted-space"> </span></p>
+<p class="p12"><br></p>
+<p class="p3">//to finish either press bottom in controller or:</p>
+<p class="p11">a.etudes2finish;</p>
+<p class="p12"><br></p>
+<p class="p14">//ETUDES3</p>
+<p class="p10">a.etudes3MIDI((c-10));</p>
+<p class="p3">//arguments are vol for:sines,celesta,steps,harp,highfft,lowFFT,mainFFT,glass,knok, slam,sine2, pno<span class="Apple-converted-space"> </span></p>
+<p class="p10">a.etudes3MIDIStart(1.2, 1.2, 2.3, 1.0,0.5, 0.8, 0.8,<span class="Apple-converted-space">  </span>1.5, 1.0,1.0, 0.4,0.7);</p>
+<p class="p10">a.etudes3MIDIStartRoutine;</p>
+<p class="p3">//if something goes wrong:</p>
+<p class="p11">a.etudes3clearproxys;</p>
+<p class="p3">//load synths with midi controller and then</p>
+<p class="p11">a.etudes3begining;</p>
+<p class="p12"><br></p>
+<p class="p3">//rehearsal marks (first : load synths with midi controller)</p>
+<p class="p11">a.etudes3rehearsalA;</p>
+<p class="p11">a.etudes3rehearsalB;</p>
+<p class="p11">a.etudes3rehearsalC;</p>
+<p class="p11">a.etudes3rehearsalD;</p>
+<p class="p11">a.etudes3rehearsalFinal;</p>
+<p class="p12"><br></p>
+<p class="p3">//to finish<span class="Apple-converted-space"> </span></p>
+<p class="p11">a.etudes3finish;</p>
+<p class="p12"><br></p>
+<p class="p12"><br></p>
+<p class="p14">//ETUDES4</p>
+<p class="p10">a = Etudes4(b);</p>
+<p class="p3">//arguments are: mainVol,highPerc,vocal,highPerc,vocal,lowPerc,vocal</p>
+<p class="p10">a.etudes4Start((c-4), 0.33, 0.33, 0.33, 0.33, 0.33, 0.33);</p>
+<p class="p3">//if midi doesn't work:</p>
+<p class="p11">a.etudes4forceStart;</p>
+<p class="p12"><br></p>
+<p class="p12"><br></p>
+<p class="p3">//to finish<span class="Apple-converted-space"> </span></p>
+<p class="p11">a.etudes4finish;</p>
+<p class="p15"><br></p>
+<p class="p3">//////////////</p>
+<p class="p3">//emergency Etudes3:</p>
+<p class="p16"><span class="s3">Document</span><span class="s1">.open(</span><span class="s4">"</span>/Users/freuben/Documents/SuperCollider/Fede's/E-tudes/Etudes3/Emergency.rtf<span class="s4">"</span><span class="s1">);</span></p>
+<p class="p12"><br></p>
+<p class="p11">a = nil;</p>
+<p class="p11">b = nil;</p>
+<p class="p12"><br></p>
+<p class="p11">Server.killAll;</p>
+</body>
+</html>
